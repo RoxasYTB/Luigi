@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="20dp"
+    android:weightSum="4"
+    android:orientation="horizontal"> <!-- nombre de colonnes -->
+
+    <ListView
+        android:id="@+id/listeDvds"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/texteTitleId"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="titre"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:padding="2dp"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/texteReleaseYearId"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="année"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:padding="2dp"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/texteLanguageId"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="langue"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:padding="2dp"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/texteDureeId"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="durée"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:padding="2dp"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+</LinearLayout>
