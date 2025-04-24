@@ -15,7 +15,7 @@ public class Constants {
     private static final String BASE_URL_PROD = "https://production.rftg.com/serviceWeb/";
     
     // Base URL pour l'API Toad
-    private static final String TOAD_BASE_URL_DEV = "http://10.0.2.2:8080/toad/";
+    private static final String TOAD_BASE_URL_DEV = "http://10.0.2.2:8180/toad/";
     private static final String TOAD_BASE_URL_TEST = "http://test-server.toad.com/toad/";
     private static final String TOAD_BASE_URL_PROD = "https://production.toad.com/toad/";
     
