@@ -50,6 +50,13 @@
         tools:layout_editor_absoluteX="1dp"
         tools:layout_editor_absoluteY="136dp">
 
+        <!-- Ajout du Spinner pour le choix de l'URL -->
+        <Spinner
+            android:id="@+id/spinnerBaseUrl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

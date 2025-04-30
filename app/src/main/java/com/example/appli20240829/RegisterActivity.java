@@ -58,7 +58,7 @@ public class RegisterActivity extends AppCompatActivity {
             String age = params[4];
 
             try {
-                URL url = new URL(Constants.getToadCustomerRegisterUrl());
+                URL url = new URL(Constants.getToadCustomerRegisterUrl(RegisterActivity.this));
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("POST");
                 connection.setRequestProperty("Content-Type", "application/json");

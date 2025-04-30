@@ -55,7 +55,7 @@ public class AfficherListeDvdsActivity extends AppCompatActivity {
         dvdAdapter = new DvdAdapter(this, dvdList);
         recyclerView.setAdapter(dvdAdapter);
 
-        String apiUrl = Constants.getToadFilmListUrl();
+        String apiUrl = Constants.getToadFilmListUrl(this);
         new AppelerServiceRestGETAfficherListeDvdsTask().execute(apiUrl);
 
         Button btnLogout = findViewById(R.id.Disconnect);

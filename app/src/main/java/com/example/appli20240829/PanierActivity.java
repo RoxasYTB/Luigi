@@ -45,7 +45,7 @@ public class PanierActivity extends AppCompatActivity {
 
     private static CompletableFuture<Integer> avoirInventoryID(int filmId, Context context) {
         CompletableFuture<Integer> future = new CompletableFuture<>();
-        String URL = Constants.getToadInventoryAvailableByIdUrl(filmId);
+        String URL = Constants.getToadInventoryAvailableByIdUrl(context, filmId);
 
         StringRequest request = new StringRequest(Request.Method.GET, URL,
                 response -> {
@@ -180,7 +180,7 @@ public class PanierActivity extends AppCompatActivity {
                     return;
                 }
 
-                StringRequest request = new StringRequest(Request.Method.POST, Constants.getToadRentalAddUrl(),
+                StringRequest request = new StringRequest(Request.Method.POST, Constants.getToadRentalAddUrl(context),
                         response -> {
                             Log.d("PanierManager", "Réponse de l'API : " + response);
                             Toast.makeText(context, "Location enregistrée", Toast.LENGTH_SHORT).show();

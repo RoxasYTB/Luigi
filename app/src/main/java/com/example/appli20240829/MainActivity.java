@@ -8,6 +8,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
@@ -36,6 +38,38 @@ public class MainActivity extends AppCompatActivity {
         registerLink = findViewById(R.id.textViewCreateAccount);
         forgotPasswordLink = findViewById(R.id.textViewForgotPassword);
 
+        // Ajout Spinner pour le choix de l'URL
+        Spinner spinnerBaseUrl = findViewById(R.id.spinnerBaseUrl);
+        String[] urls = {"192.168.8.80:8180", "10.0.0.2:8180"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, urls);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerBaseUrl.setAdapter(adapter);
+
+        // Charger la valeur sauvegardée
+        SharedPreferences prefs = getSharedPreferences("UserPrefs", MODE_PRIVATE);
+        String savedUrl = prefs.getString("base_url", "192.168.8.80:8180");
+        int selectedIndex = 0;
+        for (int i = 0; i < urls.length; i++) {
+            if (urls[i].equals(savedUrl)) {
+                selectedIndex = i;
+                break;
+            }
+        }
+        spinnerBaseUrl.setSelection(selectedIndex);
+
+        // Sauvegarder le choix à chaque modification
+        spinnerBaseUrl.setOnItemSelectedListener(new android.widget.AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(android.widget.AdapterView<?> parent, View view, int position, long id) {
+                String selectedUrl = urls[position];
+                SharedPreferences.Editor editor = getSharedPreferences("UserPrefs", MODE_PRIVATE).edit();
+                editor.putString("base_url", selectedUrl);
+                editor.apply();
+            }
+            @Override
+            public void onNothingSelected(android.widget.AdapterView<?> parent) {}
+        });
+
         loginButton.setOnClickListener(view -> new LoginTask().execute(emailInput.getText().toString(), passwordInput.getText().toString()));
         registerLink.setOnClickListener(view -> startActivity(new Intent(this, RegisterActivity.class)));
         forgotPasswordLink.setOnClickListener(view -> Toast.makeText(this, "Fonctionnalité à implémenter", Toast.LENGTH_SHORT).show());
@@ -49,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
             String email = params[0];
             String password = params[1];
             try {
-                URL url = new URL(Constants.getToadCustomerLoginUrl() + "?email=" + email);
+                URL url = new URL(Constants.getToadCustomerLoginUrl(MainActivity.this) + "?email=" + email);
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("GET");
                 connection.setRequestProperty("Content-Type", "application/json");

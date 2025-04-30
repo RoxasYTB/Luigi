@@ -110,7 +110,7 @@ public class DvdAdapter extends RecyclerView.Adapter<DvdAdapter.DvdViewHolder> {
         @Override
         protected Boolean doInBackground(Void... voids) {
             try {
-                URL url = new URL(Constants.getToadInventoryStockUrl());
+                URL url = new URL(Constants.getToadInventoryStockUrl(adapter.context));
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestMethod("GET");
                 conn.setRequestProperty("Accept", "application/json");
