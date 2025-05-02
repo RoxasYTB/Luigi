@@ -41,7 +41,7 @@ public class Constants {
     }
 
     public static String getToadInventoryStockByFilmUrl(Context context) {
-        return getToadBaseUrl(context) + "inventory/stock/byFilm";
+        return getToadBaseUrl(context) + "inventory/stockFilm";
     }
 
     public static String getToadRentalAddUrl(Context context) {

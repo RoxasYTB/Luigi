@@ -16,7 +16,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.appli20240829.config.Constants;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -28,6 +27,7 @@ import java.util.List;
 
 public class DvdAdapter extends RecyclerView.Adapter<DvdAdapter.DvdViewHolder> {
     private List<Dvd> dvdList;
+
     private Context context;
     private final Handler mainHandler = new Handler(Looper.getMainLooper());
 
@@ -110,7 +110,9 @@ public class DvdAdapter extends RecyclerView.Adapter<DvdAdapter.DvdViewHolder> {
         @Override
         protected Boolean doInBackground(Void... voids) {
             try {
-                URL url = new URL(Constants.getToadInventoryStockUrl(adapter.context));
+                // Utilisation de la constante dynamique depuis Constants
+                String inventoryUrl = Constants.getToadInventoryStockByFilmUrl(adapter.context);
+                URL url = new URL(inventoryUrl);
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestMethod("GET");
                 conn.setRequestProperty("Accept", "application/json");
@@ -158,12 +160,18 @@ public class DvdAdapter extends RecyclerView.Adapter<DvdAdapter.DvdViewHolder> {
 
         if (isAvailable) {
             holder.btnAddToCart.setEnabled(true);
-            holder.btnAddToCart.setText("🛒 Ajouter au panier");
-            holder.btnAddToCart.setBackgroundColor(ContextCompat.getColor(holder.btnAddToCart.getContext(), android.R.color.holo_green_dark));
+            holder.btnAddToCart.setText("➕ Ajouter");
+            holder.btnAddToCart.setBackgroundColor(0x3F51B5FF);
+            // btnReserver caché si disponible
+            Button btnReserver = holder.itemView.findViewById(R.id.btnReserver);
+            if (btnReserver != null) btnReserver.setVisibility(View.GONE);
         } else {
             holder.btnAddToCart.setEnabled(false);
             holder.btnAddToCart.setText("❌ Non disponible");
             holder.btnAddToCart.setBackgroundColor(ContextCompat.getColor(holder.btnAddToCart.getContext(), android.R.color.darker_gray));
+            // btnReserver montré si non disponible
+            Button btnReserver = holder.itemView.findViewById(R.id.btnReserver);
+            if (btnReserver != null) btnReserver.setVisibility(View.VISIBLE);
         }
     }
 }

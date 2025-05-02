@@ -13,13 +13,6 @@
         android:padding="16dp">
 
         <!-- Image de film -->
-        <ImageView
-            android:id="@+id/filmPoster"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:src="@drawable/dvd"
-            android:scaleType="centerCrop"
-            android:layout_marginBottom="12dp"/>
 
         <!-- Titre du film -->
         <TextView

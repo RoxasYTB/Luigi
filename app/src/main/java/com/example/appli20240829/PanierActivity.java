@@ -252,7 +252,7 @@ public class PanierActivity extends AppCompatActivity {
                 title = itemView.findViewById(R.id.dvdTitle);
                 description = itemView.findViewById(R.id.dvdDescription);
                 btnRemoveFromCart = itemView.findViewById(R.id.btnAddToCart);
-                btnRemoveFromCart.setText("Retirer");
+                btnRemoveFromCart.setText("➖ Retirer");
             }
         }
     }
